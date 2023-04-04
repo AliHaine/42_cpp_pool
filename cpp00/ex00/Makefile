@@ -3,7 +3,7 @@ CC = c++
 CFLAGS = -Wall -Werror -Wextra
 SRCS = megaphone.cpp
 
-OBJS = ${SRCS:.c=.o}
+OBJS = ${SRCS:.cpp=.o}
 
 .c.o:
 	${CC} ${CFLAGS} ${INC} -g3 -c $< -o ${<:.c=.o}
@@ -19,7 +19,7 @@ all: $(NAME)
 bonus: all
 
 clean:
-	@rm -rf $(OBJS) $(OBJS_BONUS)
+	@rm -rf $(OBJS)
 
 fclean: clean
 	@rm -rf $(NAME)
