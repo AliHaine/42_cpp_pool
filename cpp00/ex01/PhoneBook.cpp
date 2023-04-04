@@ -38,7 +38,7 @@ std::string PhoneBook::ConvertStringToColumn(std::string str) {
 	} else {
 		if (copy.length() < 10) {
 			while (copy.length() < 10)
-				copy.insert(0, 1, '_');
+				copy.insert(0, 1, ' ');
 		}
 	}
 	copy.push_back('|');
@@ -89,13 +89,13 @@ void PhoneBook::PrintColumnContact() {
 	int			max = getContactNb();
 	if (max > 8)
 		max = 8;
-
-	std::cout << "|_____index|first_name|_last_name|__nickname|" << std::endl;
+	std::cout << "|-------------------------------------------|" << std::endl;
+	std::cout << "|     index|first_name| last_name|  nickname|" << std::endl;
 	while (size++ < max - 1) {
 		std::cout << "|" << ConvertStringToColumn(std::to_string(contact[size].getIndex())) << ConvertStringToColumn(contact[size].getFirstName()) << ConvertStringToColumn(contact[size].getLastName()) << ConvertStringToColumn(contact[size].getNickName()) << std::endl;
 	}
 	try {
-		std::cout << "|___________________________________________|" << std::endl << "Please enter the wanted index: ";
+		std::cout << "|-------------------------------------------|" << std::endl << "Please enter the wanted index: ";
 		std::getline(std::cin, str);
 		size = std::stoi(str);
 	} catch (const std::exception err) {

@@ -17,7 +17,7 @@ static void display_menu() {
 	PhoneBook	pb;
 	std::string	str;
 
-	while (1) {
+	while (std::cin) {
 		std::cout << "Select a command from the following list : ADD, SEARCH, EXIT." << std::endl;
 		std::getline(std::cin, str);
 		if (str == "EXIT")
