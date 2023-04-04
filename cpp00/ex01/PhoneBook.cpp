@@ -38,7 +38,7 @@ std::string PhoneBook::ConvertStringToColumn(std::string str) {
 	} else {
 		if (copy.length() < 10) {
 			while (copy.length() < 10)
-				copy.push_back('_');
+				copy.insert(0, 1, '_');
 		}
 	}
 	copy.push_back('|');
@@ -94,14 +94,20 @@ void PhoneBook::PrintColumnContact() {
 	while (size++ < max - 1) {
 		std::cout << "|" << ConvertStringToColumn(std::to_string(contact[size].getIndex())) << ConvertStringToColumn(contact[size].getFirstName()) << ConvertStringToColumn(contact[size].getLastName()) << ConvertStringToColumn(contact[size].getNickName()) << std::endl;
 	}
-	std::cout << "|___________________________________________|" << std::endl << "Please enter the wanted index: ";
-	std::getline(std::cin, str);
-	if (std::stoi(str) > 8 || std::stoi(str) > max)
+	try {
+		std::cout << "|___________________________________________|" << std::endl << "Please enter the wanted index: ";
+		std::getline(std::cin, str);
+		size = std::stoi(str);
+	} catch (const std::exception err) {
+		std::cout << "Number exception" << std::endl;
+		return;
+	}
+	if (size > 8 || size > max || size == 0)
 	{
 		std::cout << "You don't have any contact with this index." << std::endl;
 		return;
 	}
-	PrintContactInfos(contact[std::stoi(str) - 1]);
+	PrintContactInfos(contact[size - 1]);
 }
 
 void PhoneBook::PrintContactInfos(Contact contact) {
