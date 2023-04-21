@@ -1,22 +1,23 @@
 #include "Account.hpp"
+#include <iostream>
 
-static int Account::getNbAccounts() {
-	return this->_nbAccounts;
+ int Account::getNbAccounts(void) {
+	return Account::_nbAccounts;
 }
 
-static int Account::getTotalAmount() {
-	return this->_totalAmount;
+int Account::getTotalAmount(void) {
+	return Account::_totalAmount;
 }
 
-static int Account::getNbDeposits() {
-	return this->_totalNbDeposits;
+int Account::getNbDeposits(void) {
+	return Account::_totalNbDeposits;
 }
 
-static int Account::getNbWithdrawals() {
-	return this->_totalNbWithdrawals;
+int Account::getNbWithdrawals(void) {
+	return Account::_totalNbWithdrawals;
 }
 
-void Account::displayAccountsInfos() {
+void Account::displayAccountsInfos(void) {
 	std::cout << "index:" << Account::getNbAccounts()
 			  << ";total:" << Account::getTotalAmount()
 			  << ";deposits:" << Account::getNbDeposits()
@@ -24,7 +25,8 @@ void Account::displayAccountsInfos() {
 }
 
 Account::Account(int initial_deposit) {
-	Account::getTotalAmount() = initial_deposit;
+	Account::_amount = initial_deposit;
+	Account::_nbAccounts++;
 
 	std::cout << "index:" << Account::getNbAccounts()
 		<< ";amount:" << Account::getTotalAmount()
@@ -35,25 +37,26 @@ Account::Account(int initial_deposit) {
 Account::~Account(void) {}
 
 void Account::makeDeposit(int deposit) {
-	Account::getNbDeposits()++;
-	Account::getTotalAmount() += deposit;
+	Account::_nbDeposits++;
+	Account::_amount += deposit;
+	Account::_totalAmount += deposit;
 }
 
 bool Account::makeWithdrawal(int withdrawal) {
-	if (Account::getTotalAmount() - withdrawal < 0)
+	if (Account::_amount - withdrawal < 0)
 		return (false);
-	Account::getNbWithdrawals()++;
-	Account::getTotalAmount() -= withdrawal;
+	Account::_nbWithdrawals++;
+	Account::_amount -= withdrawal;
+	Account::_totalAmount -= withdrawal;
 	return (true);
 }
 
-int	Account::checkAmount(void) {
+int	Account::checkAmount(void) const {
 	return (Account::getTotalAmount());
 }
 
-static void	Account::displayStatus() {
+void Account::displayStatus(void) const {
 	std::cout << "index:" << Account::_accountIndex
-		<< ";total:" << Account::_amount;
-		<< ";deposits:" << Account::_nbDeposits;
-		<< ";withdrawls:" << Account::_nbWithdrawals << std::endl;
+	/*<< ";total:" << Account::_amount; << ";deposits:" << Account::_nbDeposits;
+		<< ";withdrawls:" << Account::_nbWithdrawals */<< std::endl;
 }
