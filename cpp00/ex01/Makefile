@@ -1,4 +1,4 @@
-NAME = megaphone
+NAME = phonebook
 CC = g++
 CFLAGS = -Wall -Werror -Wextra
 SRCS =	main.cpp \

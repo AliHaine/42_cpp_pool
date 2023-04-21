@@ -1,4 +1,4 @@
-NAME = megaphone
+NAME = account
 CC = c++
 CFLAGS = -Wall -Werror -Wextra
 SRCS =	Account.cpp \
