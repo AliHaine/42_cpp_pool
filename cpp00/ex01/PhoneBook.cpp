@@ -2,7 +2,7 @@
 // Created by Ali Yagmur on 3/31/23.
 //
 
-#include "PhoneBook.class.hpp"
+#include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook(void) {
 	std::cout << "Initalization of PhoneBook" << std::endl;
@@ -114,4 +114,7 @@ void PhoneBook::PrintContactInfos(Contact contact) {
 	std::cout << "First name: " + contact.getFirstName() << std::endl << "Lastname: " + contact.getLastName() << std::endl << "Nickname: " + contact.getNickName() << std::endl << "PhoneNumber: " + contact.getPhoneNumber() << std::endl <<  "Darkest secret: " + contact.getDarkestSecret() << std::endl;
 }
 
-PhoneBook::~PhoneBook(void) {}
+PhoneBook::~PhoneBook(void) {
+	std::cout << "Object PhoneBook destroyed" << std::endl;
+	return;
+}

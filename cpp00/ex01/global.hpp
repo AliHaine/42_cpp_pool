@@ -5,8 +5,8 @@
 #ifndef GLOBAL_HPP
 #define GLOBAL_HPP
 
-#include "Contact.class.hpp"
-#include "PhoneBook.class.hpp"
+#include "Contact.hpp"
+#include "PhoneBook.hpp"
 #include <iostream>
 
 #endif

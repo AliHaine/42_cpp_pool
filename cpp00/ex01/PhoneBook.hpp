@@ -4,7 +4,7 @@
 #define PHONEBOOK_CLASS_HPP
 
 #include <iostream>
-#include "Contact.class.hpp"
+#include "Contact.hpp"
 
 class PhoneBook {
 public:

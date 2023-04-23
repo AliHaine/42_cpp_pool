@@ -2,7 +2,7 @@
 // Created by Ali Yagmur on 3/31/23.
 //
 
-#include "Contact.class.hpp"
+#include "Contact.hpp"
 
 Contact::Contact(void) {
 	std::cout << "Initalization of contact" << std::endl;
