@@ -1,17 +1,30 @@
 #include <iostream>
 #include <fstream>
 
- void writeToNewFile(std::fstream& srcFile, std::fstream& newFile, const std::string replaceStr[2]) {
-	char* str;
 
-	while (srcFile.read(str, 1)) {
-		std::cout << str << std::endl;
+ void writeToNewFile(std::ofstream& newFile, char *str) {
+	newFile.write(str, strlen(str));
+}
+
+ void readSrcFile(std::ifstream& srcFile, std::ofstream& newFile, const std::string replaceStr[2]) {
+	const int size = replaceStr[0].length();
+	char* str = (char*) malloc(sizeof(char) * (size + 1));
+
+	while (srcFile.good()) {
+		srcFile.read(str, size);
+		str[srcFile.gcount()] = '\0';
+		std::cout << str << " /" << replaceStr[0]  << "/" << std::endl;
+		if (std::string(str) == replaceStr[0]) {
+			str = strcpy(str, replaceStr[1].c_str());
+			std::cout << "condition" << std::endl;
+		}
+		writeToNewFile(newFile, str);
 	}
 }
 
 int main(int argc, char *argv[]) {
-	std::fstream newFile;
-	std::fstream srcFile;
+	std::ofstream newFile;
+	std::ifstream srcFile;
 	std::string newFileName;
 	std::string replaceStr[2];
 
@@ -32,5 +45,5 @@ int main(int argc, char *argv[]) {
 	}
 	replaceStr[0] = argv[2];
 	replaceStr[1] = argv[3];
-	writeToNewFile(srcFile, newFile, replaceStr);
+	readSrcFile(srcFile, newFile, replaceStr);
 }
