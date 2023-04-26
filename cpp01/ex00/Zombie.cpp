@@ -2,11 +2,11 @@
 
  Zombie::Zombie(std::string name) {
 	this->name = name;
+	std::cout << "Object Zombie " << this->name << " created" << std::endl;
 }
 
 Zombie::~Zombie() {
-	std::cout << "Object " << this->name << " destroyed" << std::endl;
-	return;
+	std::cout << "Object Zombie " << this->name << " destroyed" << std::endl;
 }
 
 std::string Zombie::getName(void) const {
