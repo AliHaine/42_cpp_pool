@@ -15,6 +15,9 @@ $(NAME): $(OBJS)
 debug: $(OBJS)
 	$(CC) $(CFLAGS) -fsanitize=address $(OBJS) $(LIB) -o $(NAME)
 
+c98: $(OBJS)
+	$(CC) $(CFLAGS) -std=c++98 $(OBJS) $(LIB) -o $(NAME)
+
 all: $(NAME)
 
 bonus: all

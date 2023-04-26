@@ -2,23 +2,26 @@
 #include <fstream>
 
 
- void writeToNewFile(std::ofstream& newFile, char *str) {
-	newFile.write(str, strlen(str));
+ void replaceWordInStr(std::string& str, std::string strReplace, size_t pos) {
+	 if (pos < str.length() && str.at(pos) != ' ') {
+		 str.erase(pos, str.find_first_of(" ", pos) - pos);
+	 }
+
+	 str.insert(pos, strReplace);
 }
 
  void readSrcFile(std::ifstream& srcFile, std::ofstream& newFile, const std::string replaceStr[2]) {
-	const int size = replaceStr[0].length();
-	char* str = (char*) malloc(sizeof(char) * (size + 1));
+	std::string str;
+	size_t pos;
 
-	while (srcFile.good()) {
-		srcFile.read(str, size);
-		str[srcFile.gcount()] = '\0';
-		std::cout << str << " /" << replaceStr[0]  << "/" << std::endl;
-		if (std::string(str) == replaceStr[0]) {
-			str = strcpy(str, replaceStr[1].c_str());
-			std::cout << "condition" << std::endl;
+	while (getline(srcFile, str)) {
+		pos = str.find(replaceStr[0], 0);
+		while (pos != std::string::npos) {
+			replaceWordInStr(str, replaceStr[1], pos);
+			pos = str.find(replaceStr[0], 0);
 		}
-		writeToNewFile(newFile, str);
+		newFile.write(str.c_str(), str.length());
+		newFile.write("\n", 1);
 	}
 }
 
