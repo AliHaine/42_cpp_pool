@@ -14,7 +14,7 @@ void HumanA::setName(std::string humanName) {
 	this->name = humanName;
 }
 
-void HumanA::setWeapon(Weapon weapon) {
+void HumanA::setWeapon(const Weapon& weapon) {
 	this->weapon = weapon;
 }
 
@@ -22,7 +22,7 @@ std::string HumanA::getName() {
 	return this->name;
 }
 
-Weapon HumanA::getWeapon() {
+const Weapon& HumanA::getWeapon() const {
 	return this->weapon;
 }
 

@@ -2,6 +2,7 @@
 
 HumanB::HumanB(std::string humanName) {
 	this->setName(humanName);
+	this->weapon = NULL;
 	std::cout << "Object HumanB " << this->name << " created" << std::endl;
 }
 
@@ -13,8 +14,8 @@ void HumanB::setName(std::string humanName) {
 	this->name = humanName;
 }
 
-void HumanB::setWeapon(Weapon weapon) {
-	this->weapon = &weapon;
+void HumanB::setWeapon(Weapon* weapon) {
+	this->weapon = weapon;
 }
 
 std::string HumanB::getName(void) {

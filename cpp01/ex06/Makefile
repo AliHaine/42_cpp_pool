@@ -1,10 +1,8 @@
-NAME = human
+NAME = HarlFilter
 CC = c++
 CFLAGS = -Wall -Werror -Wextra
 SRCS =	main.cpp \
-		HumanA.cpp \
-		HumanB.cpp \
-		Weapon.cpp
+		Harl.cpp
 
 OBJS = ${SRCS:.cpp=.o}
 
