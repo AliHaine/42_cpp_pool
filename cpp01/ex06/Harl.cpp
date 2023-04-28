@@ -28,18 +28,21 @@ void Harl::nothing(void) {
 	std::cout << "Nothing func" << std::endl;
 }
 
-void Harl::complain(std::string level) {
+void Harl::complain(int level) {
 	void (Harl::*pt[5])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error, &Harl::nothing};
-	const std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
-	for (int i = 0; i < 4; i++) {
-		if (levels[i].compare(level) == 0) {
-			while (i < 4) {
-				(this->*pt[i])();
-				i++;
-			}
-			return;
-		}
+	switch(level) {
+		case 0:
+			(this->*pt[0])();
+		case 1:
+			(this->*pt[1])();
+		case 2:
+			(this->*pt[2])();
+		case 3:
+			(this->*pt[3])();
+			break;
+		default:
+			(this->*pt[4])();
+			break;
 	}
-	(this->*pt[4])();
 }
