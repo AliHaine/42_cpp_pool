@@ -5,9 +5,15 @@
 #include "Contact.hpp"
 
 Contact::Contact(void) {
-	std::cout << "Initalization of contact" << std::endl;
+	std::cout << "Initalization of Contact" << std::endl;
 	return;
 }
+
+Contact::~Contact(void) {
+	std::cout << "Object Contact destroyed" << std::endl;
+	return;
+}
+
 
 void Contact::setIndex(int index) {
 	this->index = index + 1;

@@ -36,13 +36,12 @@ void Account::displayAccountsInfos(void) {
 Account::Account(int initial_deposit) {
 	Account::_amount = initial_deposit;
 	this->_totalAmount += Account::_amount;
+	Account::_accountIndex = this->_nbAccounts;
+	this->_nbAccounts++;
 
 	std::cout << "index:" << Account::_accountIndex
 		<< ";amount:" << Account::_amount
 		<< ";created" << std::endl;
-	Account::_accountIndex = this->_nbAccounts;
-	this->_nbAccounts++;
-
 }
 
 Account::~Account(void) {
