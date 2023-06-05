@@ -16,7 +16,10 @@ Contact::~Contact(void) {
 
 
 void Contact::setIndex(int index) {
-	this->index = index + 1;
+	if (index == 8)
+		this->index = 1;
+	else
+		this->index = index + 1;
 }
 
 void Contact::setFirstName(const std::string& first_name) {
