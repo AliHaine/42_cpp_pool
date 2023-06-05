@@ -5,14 +5,14 @@
 
 class Contact {
 public:
-	Contact();
-
-	int			getIndex() const;
-	std::string	getFirstName() const;
-	std::string	getLastName() const;
-	std::string	getNickName() const;
-	std::string	getPhoneNumber() const;
-	std::string	getDarkestSecret() const;
+	Contact(void);
+	~Contact(void);
+	int			getIndex(void) const;
+	std::string	getFirstName(void) const;
+	std::string	getLastName(void) const;
+	std::string	getNickName(void) const;
+	std::string	getPhoneNumber(void) const;
+	std::string	getDarkestSecret(void) const;
 
 	void setIndex(int index);
 	void setFirstName(const std::string& first_name);

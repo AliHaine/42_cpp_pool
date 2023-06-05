@@ -1,7 +1,3 @@
-//
-// Created by Ali Yagmur on 3/31/23.
-//
-
 #include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook(void) {
@@ -102,7 +98,7 @@ void PhoneBook::PrintColumnContact() {
 		std::cout << "Number exception" << std::endl;
 		return;
 	}
-	if (size > 8 || size > max || size == 0)
+	if (size > 8 || size > max || size <= 0)
 	{
 		std::cout << "You don't have any contact with this index." << std::endl;
 		return;
