@@ -12,7 +12,7 @@ int	main(int argc, char *argv[]) {
 		s = argv[i++];
 		for (unsigned long int j = 0; j < s.length(); j++)
 			s[j] = std::toupper(s[j]);
-		std::cout << s;
+		std::cout << s << std::endl;
 	}
 	return (0);
 }
