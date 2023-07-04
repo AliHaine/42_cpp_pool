@@ -83,47 +83,33 @@ bool Fixed::operator!=(const Fixed& next) {
 }
 
 Fixed Fixed::operator+(int val) {
-    Fixed f;
-
-    f.rawBits = this->getRawBits() + (val << this->bits);
-    return f;
+    this->rawBits = this->getRawBits() + (val << this->bits);
+    return *this;
 }
 
 Fixed Fixed::operator-(int val) {
-    Fixed f;
-
-    f.rawBits = this->getRawBits() - (val << this->bits);
-    return f;
+    this->rawBits = this->getRawBits() - (val << this->bits);
+    return *this;
 }
 
 Fixed Fixed::operator*(int val) {
-    Fixed f;
-
-    f.rawBits = this->getRawBits() * val;
-    return f;
+    this->rawBits = this->getRawBits() * val;
+    return *this;
 }
 
 Fixed Fixed::operator/(int val) {
-    Fixed f;
-
-    f.rawBits = this->getRawBits() / val;
-    return f;
+    this->rawBits = this->getRawBits() / val;
+    return *this;
 }
 
 Fixed& Fixed::operator++(void) {
-    std::cout << "apl1" << std::endl;
-    this->rawBits = 1 / (1 << this->bits);
+    ++this->rawBits;
     return *this;
 }
 
 Fixed Fixed::operator++(int val) {
-    Fixed f;
-
-    std::cout << "apl2" << std::endl;
-    f.rawBits = 50000;
-   // this->rawBits = this->getRawBits() + (1 / (1 << this->bits));
-    //std::cout << this->rawBits << std::endl;
-    return f;
+    ++(*this);
+    return *this;
 }
 
 

@@ -3,6 +3,7 @@
 int main(void) {
 	Fixed a = Fixed(8);
     Fixed b = Fixed(9);
+    Fixed c = Fixed(4840.42f);
     Fixed z;
     std::cout << "a is " << a << std::endl;
     a = a + 1 ;
@@ -30,5 +31,10 @@ int main(void) {
     std::cout << "z is " << z << std::endl;
     ++z;
     std::cout << "z is " << z << std::endl;
+    b = b - 12;
+    std::cout << "b is " << b << std::endl;
+    std::cout << "c is " << c << std::endl;
+    c = c + 21;
+    std::cout << "c is " << c << std::endl;
 	return 0;
 }
