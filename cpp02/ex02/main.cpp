@@ -5,6 +5,7 @@ int main(void) {
     Fixed b = Fixed(9);
     Fixed c = Fixed(4840.42f);
     Fixed z;
+
     std::cout << "a is " << a << std::endl;
     a = a + 1 ;
     std::cout << "a is " << a << std::endl;
@@ -36,5 +37,8 @@ int main(void) {
     std::cout << "c is " << c << std::endl;
     c = c + 21;
     std::cout << "c is " << c << std::endl;
+
+    std::cout << "a is " << a << std::endl;
+    std::cout << "the smallest again a and b is " << a.min(a, b) << std::endl;
 	return 0;
 }
