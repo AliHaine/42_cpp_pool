@@ -22,7 +22,10 @@ ClapTrap::~ClapTrap(void) {
 
 ClapTrap::ClapTrap(const ClapTrap& clapTrap) {
     std::cout << "Copy ClapTrap " << this->name << " constructor" << std::endl;
-    *this = clapTrap;
+	this->name = clapTrap.name;
+	this->energyPoints = clapTrap.energyPoints;
+	this->healthPoints = clapTrap.healthPoints;
+	this->damagePoints = clapTrap.damagePoints;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap &clapTrap) {

@@ -1,6 +1,6 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(void) : name("Default"), healthPoints(0), energyPoints(0), damagePoints(0) {
+ClapTrap::ClapTrap(void) : name("Default"), healthPoints(10), energyPoints(10), damagePoints(0) {
     std::cout << "Object ClapTrap " << this->name << " created" << std::endl;
 }
 
