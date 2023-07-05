@@ -1,12 +1,13 @@
-//
-// Created by Ali Yagmur on 7/4/23.
-//
-
 #ifndef SCAVTRAP_HPP
 #define SCAVTRAP_HPP
 
-class ScravTrap : public ClapTrap {
+#include "ClapTrap.hpp"
 
+class ScavTrap : public ClapTrap {
+public:
+    ScavTrap(std::string name);
+private:
+    void guardGate(void);
 };
 
 #endif

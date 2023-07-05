@@ -1,5 +1,13 @@
 #include "ClapTrap.hpp"
 
+ClapTrap::ClapTrap(void) {
+    this->name = "default";
+    this->energyPoints = 10;
+    this->healthPoints = 10;
+    this->damagePoints = 0;
+    std::cout << "Object ClapTrap " << this->name << " created" << std::endl;
+}
+
 ClapTrap::ClapTrap(const std::string name) {
 	this->name = name;
 	this->energyPoints = 10;
@@ -10,6 +18,20 @@ ClapTrap::ClapTrap(const std::string name) {
 
 ClapTrap::~ClapTrap(void) {
 	std::cout << "Object ClapTrap " << this->name << " destroyed" << std::endl;
+}
+
+ClapTrap::ClapTrap(const ClapTrap& clapTrap) {
+    std::cout << "Copy ClapTrap " << this->name << " constructor" << std::endl;
+    *this = clapTrap;
+}
+
+ClapTrap& ClapTrap::operator=(const ClapTrap &clapTrap) {
+    std::cout << "Copy assignment operator called ClapTrap" << std::endl;
+    this->name = clapTrap.name;
+    this->energyPoints = clapTrap.energyPoints;
+    this->healthPoints = clapTrap.healthPoints;
+    this->damagePoints = clapTrap.damagePoints;
+    return (*this);
 }
 
 void ClapTrap::attack(const std::string& target) {
