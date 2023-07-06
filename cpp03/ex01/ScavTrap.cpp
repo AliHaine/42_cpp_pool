@@ -12,6 +12,23 @@ ScavTrap::~ScavTrap(void) {
 	std::cout << "Object ScavTrap " << this->name << " destroyed" << std::endl;
 }
 
+ScavTrap::ScavTrap(const ScavTrap& scavTrap) {
+    std::cout << "Copy ScavTrap " << this->name << " constructor" << std::endl;
+    this->name = scavTrap.name;
+    this->healthPoints = scavTrap.healthPoints;
+    this->energyPoints = scavTrap.energyPoints;
+    this->damagePoints = scavTrap.damagePoints;
+}
+
+ScavTrap &ScavTrap::operator=(const ScavTrap &scavTrap) {
+    std::cout << "Copy assignment operator called ScavTrap" << std::endl;
+    this->name = scavTrap.name;
+    this->healthPoints = scavTrap.healthPoints;
+    this->energyPoints = scavTrap.energyPoints;
+    this->damagePoints = scavTrap.damagePoints;
+    return (*this);
+}
+
 void ScavTrap::guardGate(void) {
     std::cout << "ScavTrap entre en mode Gate keeper" << std::endl;
 }
