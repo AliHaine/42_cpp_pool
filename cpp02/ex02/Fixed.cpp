@@ -100,6 +100,16 @@ Fixed Fixed::operator++(int val) {
     return *this;
 }
 
+Fixed& Fixed::operator--(void) {
+    --this->rawBits;
+    return *this;
+}
+
+Fixed Fixed::operator--(int val) {
+    --(*this);
+    return *this;
+}
+
 float Fixed::toFloat(void) const {
     return (float)this->getRawBits() / (1 << this->bits);
 }

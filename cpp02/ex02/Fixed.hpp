@@ -27,6 +27,8 @@ public:
 
     Fixed& operator++(void);
     Fixed operator++(int val);
+    Fixed& operator--(void);
+    Fixed operator--(int val);
 
 	float	toFloat(void) const;
 	int		toInt(void) const;
