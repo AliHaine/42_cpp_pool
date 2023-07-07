@@ -4,7 +4,7 @@ ClapTrap::ClapTrap(void) : name("Default"), healthPoints(10), energyPoints(10), 
     std::cout << "Object ClapTrap " << this->name << " created" << std::endl;
 }
 
-ClapTrap::ClapTrap(const std::string name) : name(name), healthPoints(10), energyPoints(10), damagePoints(0){
+ClapTrap::ClapTrap(const std::string name) : name(name), healthPoints(10), energyPoints(10), damagePoints(0) {
     std::cout << "Object ClapTrap " << this->name << " created" << std::endl;
 }
 
