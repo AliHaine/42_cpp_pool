@@ -8,6 +8,7 @@ int main(void) {
 	ct1.attack("marwen");
 	ct1.beRepaired(150);
 
+	s1.attack("tar");
 	s1.guardGate();
 
 }

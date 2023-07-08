@@ -15,6 +15,7 @@ int main(void) {
 	s1.guardGate();
 
 	f1.highFivesGuys();
+	dm1.attack("test1");
 	dm1.whoAmI();
 
 }
