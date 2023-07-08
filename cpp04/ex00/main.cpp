@@ -1,5 +1,9 @@
 #include "Animal.hpp"
 
+#include "Animal.hpp"
+#include "Dog.hpp"
+#include "Cat.hpp"
+
 int main()
 {
 	const Animal* meta = new Animal();
@@ -10,6 +14,19 @@ int main()
 	i->makeSound(); //will output the cat sound!
 	j->makeSound();
 	meta->makeSound();
-	...
+	j->makeSound();
+	j->makeSound();
+	j->makeSound();
+	j->makeSound();
+	j->makeSound();
+	j->makeSound();
+	i->makeSound();
+	i->makeSound();
+	i->makeSound();
+	i->makeSound();
+	j->makeSound();
+	i->makeSound();
+	j->makeSound();
+	i->makeSound();
 	return 0;
 }
