@@ -2,6 +2,7 @@
 #define DOG_HPP
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Dog : virtual public Animal {
 public:
@@ -12,6 +13,8 @@ public:
 
 	void makeSound(void) const;
 	std::string getType(void) const;
+private:
+	Brain* brain;
 };
 
 #endif
