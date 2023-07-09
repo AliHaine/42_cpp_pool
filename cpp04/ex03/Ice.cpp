@@ -19,3 +19,11 @@ Ice& Ice::operator=(Ice& ice) {
 Ice::~Ice(void) {
 	std::cout << "Ice destructor called" << std::endl;
 }
+
+AMateria* Ice::clone(void) {
+
+}
+
+void Ice::use(ICharacter &target) {
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+}

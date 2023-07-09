@@ -3,8 +3,7 @@
 
 #include "AMateria.hpp"
 
-class ICharacter
-{
+class ICharacter {
 public:
 	virtual ~ICharacter(void) {}
 	virtual std::string const & getName() const = 0;

@@ -10,6 +10,7 @@ public:
 	Ice& operator=(Ice& ice);
 	~Ice(void);
 	AMateria* clone(void);
+	void use(ICharacter& target);
 };
 
 #endif
