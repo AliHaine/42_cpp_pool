@@ -26,3 +26,7 @@ AMateria::AMateria(const std::string &type) : type(type) {
 std::string AMateria::getType(void) const {
 	return this->type;
 }
+
+void AMateria::use(ICharacter &target) {
+    std::cout << "Default AMateria use one " << target.getName() << std::endl;
+}
