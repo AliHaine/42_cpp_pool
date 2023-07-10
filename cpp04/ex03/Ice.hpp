@@ -6,10 +6,10 @@
 class Ice : public AMateria {
 public:
 	Ice(void);
-	Ice(Ice& ice);
-	Ice& operator=(Ice& ice);
+	Ice(const Ice& ice);
+	Ice& operator=(const Ice& ice);
 	~Ice(void);
-	AMateria* clone(void);
+	AMateria* clone(void) const;
 	void use(ICharacter& target);
 };
 

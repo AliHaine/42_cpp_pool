@@ -23,7 +23,7 @@ AMateria::AMateria(const std::string &type) : type(type) {
 	std::cout << "AMateria constructor called" << std::endl;
 }
 
-std::string AMateria::getType(void) const {
+const std::string& AMateria::getType(void) const {
 	return this->type;
 }
 

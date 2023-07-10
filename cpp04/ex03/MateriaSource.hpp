@@ -12,7 +12,8 @@ public:
     void learnMateria(AMateria* aMateria);
     AMateria* createMateria(const std::string& type);
 private:
-    AMateria* _matSrcInventory[4];
+    AMateria*	_matSrcInventory[4];
+	int			_matNumber;
 };
 
 #endif

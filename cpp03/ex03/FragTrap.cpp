@@ -1,5 +1,8 @@
 #include "FragTrap.hpp"
 
+unsigned int FragTrap::_sAttackDamages = 30;
+unsigned int FragTrap::_sHealthPoints = 100;
+
 FragTrap::FragTrap(void) : ClapTrap("default") {
 	std::cout << "Object FragTrap " << this->name << " created" << std::endl;
 }

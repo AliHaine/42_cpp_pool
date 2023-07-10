@@ -12,6 +12,7 @@ public:
     ScavTrap& operator=(const ScavTrap& scavTrap);
     void attack(const std::string& target);
     void guardGate(void);
+	static unsigned int _sEnergyPoints;
 };
 
 #endif

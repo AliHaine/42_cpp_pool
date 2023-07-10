@@ -1,5 +1,7 @@
 #include "ScavTrap.hpp"
 
+unsigned int ScavTrap::_sEnergyPoints = 50;
+
 ScavTrap::ScavTrap(void) : ClapTrap("default") {
 	std::cout << "Object ScavTrap " << this->name << " created" << std::endl;
 }

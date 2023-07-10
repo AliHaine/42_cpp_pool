@@ -11,6 +11,8 @@ public:
     FragTrap(const FragTrap& fragTrap);
     FragTrap& operator=(const FragTrap& fragTrap);
 	void highFivesGuys(void);
+	static unsigned int _sAttackDamages;
+	static unsigned int _sHealthPoints;
 };
 
 #endif
