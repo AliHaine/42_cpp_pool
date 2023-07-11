@@ -2,6 +2,7 @@
 #define MATERIASOURCE_HPP
 
 #include "IMateriaSource.hpp"
+#include <list>
 
 class MateriaSource : public IMateriaSource {
 public:
@@ -11,7 +12,10 @@ public:
     ~MateriaSource(void);
     void learnMateria(AMateria* aMateria);
     AMateria* createMateria(const std::string& type);
+	void addMatToList(AMateria* aMateria);
+	void clearMatList(void);
 private:
+	std::list<AMateria*> itemsList;
     AMateria*	_matSrcInventory[4];
 	int			_matNumber;
 };

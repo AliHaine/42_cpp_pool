@@ -47,11 +47,11 @@ const std::string& Character::getName(void) const {
     return this->_name;
 }
 
-void Character::equip(AMateria *m) {
+void Character::equip(AMateria *aMateria) {
     for (int i = 0; i < 4; i++) {
         if (!this->_inventory[i]) {
-            this->_inventory[i] = m;
-			std::cout << "Character equip " << m->getType() << " at slot" << i << std::endl;
+            this->_inventory[i] = aMateria;
+			std::cout << "Character equip " << aMateria->getType() << " at slot" << i << std::endl;
             break;
         }
     }
@@ -59,18 +59,40 @@ void Character::equip(AMateria *m) {
 }
 
 void Character::unequip(int idx) {
-    //todo
+	int i;
+
+	if (idx >= 4) {
+		std::cout << "Unequip index in more than 3" << std::endl;
+		return;
+	}
+	if (!this->_inventory[idx]) {
+		std::cout << "Unequip no item found at the slot " << idx << std::endl;
+		return;
+	}
+	std::cout << "Unequip item at the slot " << idx << std::endl;
+	i = idx;
+	this->_inventory[idx] = 0;
+	while (i < 3) {
+		if (!this->_inventory[i + 1])
+			return;
+		this->_inventory[i] = this->_inventory[i + 1];
+		this->_inventory[i + 1] = 0;
+		i++;
+	}
+
+
 }
 
 void Character::use(int idx, ICharacter& target) {
 
     if (idx >= 4) {
-		std::cout << "index in more than 3" << std::endl;
+		std::cout << "Use index in more than 3" << std::endl;
 		return;
 	}
     if (!this->_inventory[idx]) {
-		std::cout << "no item found at the slot " << idx << std::endl;
+		std::cout << "Use no item found at the slot " << idx << std::endl;
 		return;
 	}
+	std::cout << "Use item at the slot " << idx << std::endl;
     this->_inventory[idx]->use(target);
 }

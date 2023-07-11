@@ -18,7 +18,9 @@ int main() {
 	me->use(0, *bob);
 	me->use(2, *bob);
 	me->use(1, *bob);
-	delete tmp;
+	me->unequip(0);
+	me->unequip(1);
+	me->unequip(0);
 	delete bob;
 	delete me;
 	delete src;
