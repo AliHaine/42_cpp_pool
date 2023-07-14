@@ -6,6 +6,12 @@
 
 int main()
 {
+	Cat a1 = Cat();
+	Cat a2;
+
+	a2 = a1;
+
+
 	Animal* animal[50];
 
 	for (int i = 0; i < 25; i++)

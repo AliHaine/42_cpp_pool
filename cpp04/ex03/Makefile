@@ -1,6 +1,6 @@
 NAME = ex03
 CC = c++
-CFLAGS = -Wall -Werror -Wextra
+CXXFLAGS = -Wall -Werror -Wextra
 SRCS =	main.cpp \
 		AMateria.cpp \
 		Character.cpp \

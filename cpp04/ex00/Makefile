@@ -1,6 +1,6 @@
 NAME = animal
 CC = c++
-CFLAGS = -Wall -Werror -Wextra
+CXXFLAGS = -Wall -Werror -Wextra
 SRCS =	main.cpp \
 		Animal.cpp \
 		Dog.cpp \
@@ -11,16 +11,16 @@ SRCS =	main.cpp \
 OBJS = ${SRCS:.cpp=.o}
 
 .c.o:
-	${CC} ${CFLAGS} ${INC} -g3 -c $< -o ${<:.c=.o}
+	${CC} ${CXXFLAGS} ${INC} -g3 -c $< -o ${<:.c=.o}
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIB) -o $(NAME)
+	$(CC) $(CXXFLAGS) $(OBJS) $(LIB) -o $(NAME)
 
 debug: $(OBJS)
-	$(CC) $(CFLAGS) -fsanitize=address $(OBJS) $(LIB) -o $(NAME)
+	$(CC) $(CXXFLAGS) -fsanitize=address $(OBJS) $(LIB) -o $(NAME)
 
 c98: $(OBJS)
-	$(CC) $(CFLAGS) -std=c++98 $(OBJS) $(LIB) -o $(NAME)
+	$(CC) $(CXXFLAGS) -std=c++98 $(OBJS) $(LIB) -o $(NAME)
 
 all: $(NAME)
 

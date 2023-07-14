@@ -9,13 +9,13 @@ Cat::Cat(void) {
 Cat::Cat(const Cat& cat) {
 	std::cout << "Cat copy constructor called" << std::endl;
 	this->type = cat.type;
-	this->brain = cat.brain;
+	this->brain = new Brain(*cat.brain);
 }
 
 Cat& Cat::operator=(const Cat& cat) {
 	std::cout << "Cat copy assign constructor called" << std::endl;
 	this->type = cat.type;
-	this->brain = cat.brain;
+	this->brain = new Brain(*cat.brain);
 	return (*this);
 }
 
