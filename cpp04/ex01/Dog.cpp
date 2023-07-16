@@ -2,20 +2,20 @@
 
 Dog::Dog(void) {
 	std::cout << "Dog default constructor called" << std::endl;
-	this->type = "dog";
+	this->type = "Dog";
 	this->brain = new Brain();
 }
 
 Dog::Dog(const Dog& dog) {
 	std::cout << "Dog copy constructor called" << std::endl;
 	this->type = dog.type;
-	this->brain = dog.brain;
+	this->brain = new Brain(*dog.brain);
 }
 
 Dog& Dog::operator=(const Dog& dog) {
 	std::cout << "Dog copy assign constructor called" << std::endl;
 	this->type = dog.type;
-	this->brain = dog.brain;
+	this->brain = new Brain(*dog.brain);
 	return (*this);
 }
 

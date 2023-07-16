@@ -2,7 +2,7 @@
 
 Dog::Dog(void) {
 	std::cout << "Dog default constructor called" << std::endl;
-	this->type = "dog";
+	this->type = "Dog";
 }
 
 Dog::Dog(const Dog& dog) {
