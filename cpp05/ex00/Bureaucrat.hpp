@@ -6,12 +6,13 @@
 class Bureaucrat {
 public:
 	Bureaucrat(void);
+    Bureaucrat(std::string name, int rank);
 	Bureaucrat(Bureaucrat &bureaucrat);
 	Bureaucrat& operator=(Bureaucrat &bureaucrat);
+
 	~Bureaucrat(void);
 
-    void		setName(std::string name);
-	std::string getName(void);
+	const std::string getName(void);
     void		setRank(int rank);
 	int			getRank(void);
     void        upRank(void);
