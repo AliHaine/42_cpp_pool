@@ -53,3 +53,14 @@ void Bureaucrat::upRank(void) {
 void Bureaucrat::downRank(void) {
     setRank(getRank() + 1);
 }
+
+void Bureaucrat::signForm(Form &form) {
+    try {
+        form.beSigned(*this);
+    } catch (std::exception &e) {
+        std::cout << this->getName() << " couldn’t sign " << form.getName() << " because his rank is to low";
+    }
+    form.setSigned();
+    std::cout << this->getName() << " signed " << form.getName();
+
+}

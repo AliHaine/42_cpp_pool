@@ -2,6 +2,7 @@
 #define BUREAUCRAT_HPP
 
 #include <iostream>
+#include "Form.hpp"
 
 class Bureaucrat {
 
@@ -18,6 +19,7 @@ public:
 	int		        	getRank(void);
     void                upRank(void);
     void                downRank(void);
+    void                signForm(Form &form);
 
 private:
 	const std::string	_name;
