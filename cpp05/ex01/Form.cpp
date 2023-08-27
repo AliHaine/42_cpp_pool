@@ -42,10 +42,8 @@ void Form::setSigned(void) {
     this->_isSigned = true;
 }
 
-void Form::beSigned(Bureaucrat &bureaucrat) {
-    if (bureaucrat.getRank() < this->getRankToSign())
-    {
+void Form::beSigned(Bureaucrat bureaucrat) {
+    if (bureaucrat.getRank() > this->getRankToSign())
         throw GradeTooLowException();
-    }
     setSigned();
 }

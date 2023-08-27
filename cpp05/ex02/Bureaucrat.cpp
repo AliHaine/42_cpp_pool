@@ -54,7 +54,7 @@ void Bureaucrat::downRank(void) {
     setRank(getRank() + 1);
 }
 
-void Bureaucrat::signForm(Form &form) {
+void Bureaucrat::signForm(AForm &form) {
     try {
         form.beSigned(*this);
     } catch (std::exception &e) {
@@ -62,4 +62,5 @@ void Bureaucrat::signForm(Form &form) {
     }
     if (form.getIsSigned())
     	std::cout << this->getName() << " signed " << form.getName() << std::endl;
+
 }

@@ -25,13 +25,13 @@ private:
 };
 
 class GradeTooHighException : public std::exception {
-    const char *what(void) const noexcept override {
+	const char *what(void) const throw() {
         return "Grade Too High";
     }
 };
 
 class GradeTooLowException : public std::exception {
-    const char *what(void) const noexcept override {
+    const char *what(void) const throw() {
         return "Grade Too Low";
     }
 };

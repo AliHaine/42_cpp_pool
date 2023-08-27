@@ -1,9 +1,10 @@
 #include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int main(void)
 {
     Bureaucrat b1;
-	Form form("TestForm1", 5, 5);
+	ShrubberyCreationForm form("jardin");
     try {
         Bureaucrat b2("Test b2", 55555);
     } catch (std::exception &e){

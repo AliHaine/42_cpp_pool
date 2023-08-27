@@ -15,6 +15,7 @@ int main(void)
     }
     Bureaucrat b3("Test b3", 1);
 
+	std::cout << b1 << std::endl;
     std::cout << b3 << std::endl;
 
 }

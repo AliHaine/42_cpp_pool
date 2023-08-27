@@ -6,13 +6,13 @@
 
 class Bureaucrat;
 
-class Form {
+class AForm {
 public:
-    Form(void);
-    Form(const std::string name, int rankToSign, int rankToExec);
-    Form(Form &form);
-    Form &operator=(Form &form);
-    ~Form(void);
+	AForm(void);
+	AForm(const std::string name, int rankToSign, int rankToExec);
+	AForm(AForm &form);
+	AForm &operator=(AForm &form);
+	~AForm(void);
 
     const std::string   getName(void);
     bool                getIsSigned(void);
@@ -20,7 +20,8 @@ public:
     int                 getRankToExec(void);
     void                setSigned(void);
 
-    void                beSigned(Bureaucrat bureaucrat);
+	void                beSigned(Bureaucrat bureaucrat);
+	virtual void		execute(const Bureaucrat &executor) = 0;
 
 private:
     const std::string   _name;
