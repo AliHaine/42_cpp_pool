@@ -2,6 +2,7 @@
 #define FORM_HPP
 
 #include <iostream>
+#include <fstream>
 #include "Bureaucrat.hpp"
 
 class Bureaucrat;
@@ -14,14 +15,14 @@ public:
 	AForm &operator=(AForm &form);
 	~AForm(void);
 
-    const std::string   getName(void);
-    bool                getIsSigned(void);
-    int                 getRankToSign(void);
-    int                 getRankToExec(void);
+    std::string			getName(void) const;
+    bool                getIsSigned(void) const;
+	int					getRankToSign(void) const;
+    int					getRankToExec(void)const ;
     void                setSigned(void);
 
-	void                beSigned(Bureaucrat bureaucrat);
-	virtual void		execute(const Bureaucrat &executor) = 0;
+	void                beSigned(const Bureaucrat &bureaucrat);
+	virtual void		execute(const Bureaucrat &executor) const = 0;
 
 private:
     const std::string   _name;
@@ -29,9 +30,16 @@ private:
     const int           _rankToSign;
     const int           _rankToExec;
 
+protected:
 	class GradeTooLowException : public std::exception {
 		const char *what(void) const throw() {
 			return ("Form Grade too low");
+		}
+	};
+
+	class NotSignedException : public std::exception {
+		const char *what(void) const throw() {
+			return ("Form is not signed");
 		}
 	};
 };

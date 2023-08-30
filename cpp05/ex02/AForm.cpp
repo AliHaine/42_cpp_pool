@@ -22,19 +22,19 @@ AForm::~AForm(void) {
     std::cout << "AForm destructor called" << std::endl;
 }
 
-const std::string AForm::getName(void) {
+std::string AForm::getName(void) const {
     return this->_name;
 }
 
-bool AForm::getIsSigned(void) {
+bool AForm::getIsSigned(void) const {
     return this->_isSigned;
 }
 
-int AForm::getRankToSign(void) {
+int AForm::getRankToSign(void) const {
     return this->_rankToSign;
 }
 
-int AForm::getRankToExec(void) {
+int AForm::getRankToExec(void) const {
     return this->_rankToExec;
 }
 
@@ -42,8 +42,9 @@ void AForm::setSigned(void) {
     this->_isSigned = true;
 }
 
-void AForm::beSigned(Bureaucrat bureaucrat) {
+void AForm::beSigned(const Bureaucrat &bureaucrat) {
     if (bureaucrat.getRank() > this->getRankToSign())
         throw GradeTooLowException();
     setSigned();
+	std::cout << bureaucrat.getName() << " signed " << this->getName() << std::endl;
 }

@@ -30,7 +30,7 @@ Bureaucrat::~Bureaucrat(void) {
     std::cout << "Bureaucrat destructor called" << std::endl;
 }
 
-const std::string Bureaucrat::getName(void) {
+std::string Bureaucrat::getName(void) const {
     return this->_name;
 }
 
@@ -42,7 +42,7 @@ void Bureaucrat::setRank(int rank) {
     this->_rank = rank;
 }
 
-int Bureaucrat::getRank(void) {
+int Bureaucrat::getRank(void) const {
     return this->_rank;
 }
 
@@ -60,7 +60,12 @@ void Bureaucrat::signForm(AForm &form) {
     } catch (std::exception &e) {
         std::cout << this->getName() << " couldn’t sign " << form.getName() << " because his rank is to low" << std::endl;
     }
-    if (form.getIsSigned())
-    	std::cout << this->getName() << " signed " << form.getName() << std::endl;
+}
 
+void Bureaucrat::executeForm(const AForm &aForm) {
+	try {
+		aForm.execute(*this);
+	} catch (std::exception &exception) {
+		std::cout << *this << " cannot execute form " << aForm.getName() << exception.what() << std::endl;
+	}
 }
