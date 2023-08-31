@@ -19,14 +19,25 @@ Intern::~Intern(void) {
 	std::cout << "Intern destructor called" << std::endl;
 }
 
-static ShrubberyCreationForm *createShrubberyForm(std::string target) {
+static AForm *createShrubberyForm(std::string target) {
+	return new ShrubberyCreationForm(target);
+}
+static AForm *createPresidentialForm(std::string target) {
+	return new ShrubberyCreationForm(target);
+}
+static AForm *createRobotomyForm(std::string target) {
 	return new ShrubberyCreationForm(target);
 }
 
 AForm *Intern::makeForm(std::string form, std::string target) {
-	(void)form;
-
-	ShrubberyCreationForm *(*ptr_tab[1])(std::string) = {&createShrubberyForm};
-	std::cout << "make" << std::endl;
-	return (*ptr_tab[0])(target);
+	AForm *(*ptr_tab[])(std::string) = {&createShrubberyForm, &createPresidentialForm, &createRobotomyForm};
+	std::string formName[] = {"ShrubberyCreationForm", "PresidentialPardonForm", "RobotomyRequestForm"};
+	for (int i = 0; i < 3; i++) {
+		if (form == formName[i]) {
+			std::cout << "Intern create " << form << std::endl;
+			return (ptr_tab[i])(target);
+		}
+	}
+	std::cout << "the form " << form << " don't exist" << std::endl;
+	return (0);
 }

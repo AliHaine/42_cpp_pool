@@ -12,8 +12,6 @@ public:
 	~Intern(void);
 
 	AForm *makeForm(std::string form, std::string target);
-private:
-	static ShrubberyCreationForm *createShrubberyForm(std::string target);
 };
 
 #endif

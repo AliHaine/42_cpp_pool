@@ -43,7 +43,7 @@ int main(void)
 	b3.executeForm(rform);
 	std::cout << std::endl;
 	fo = none1.makeForm("test", "MyCustomTarget");
-	std::cout << fo->getName() << std::endl;
+	fo = none1.makeForm("PresidentialPardonForm", "MyCustomTarget");
 	delete fo;
 	std::cout << std::endl;
 }
