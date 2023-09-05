@@ -25,35 +25,32 @@ ScalarConverter::~ScalarConverter(void) {
 
 void ScalarConverter::Convert(const std::string arg) {
 	ScalarConverter sc(arg);
+    if (Utils::haveForbiddenChar(sc.getArg(), "-+0123456789.f"))
+        std::cout << "forbidden char" << std::endl;
+    if (Utils::haveDuplicateChar(sc.getArg(), '.'))
+        std::cout << "double ." << std::endl;
+    if (Utils::haveDuplicateChar(sc.getArg(), 'f'))
+        std::cout << "double f" << std::endl;
+    if (Utils::haveDuplicateChar(sc.getArg(), '-'))
+        std::cout << "double f" << std::endl;
+    if (Utils::haveDuplicateChar(sc.getArg(), '+'))
+        std::cout << "double f" << std::endl;
 	sc.DefineType();
-	std::cout << "args : " << arg << std::endl;
+	std::cout << "args : " << arg << " type " << sc.getType() << std::endl;
 }
 
 void ScalarConverter::DefineType(void) {
-	if (Utils::isNan(this->getArg())) {
-		setType(type_nanf);
-		return;
-	}
-	else if (this->getArg().length() == 1) {
+	if (Utils::isNan(this->getArg()))
+        setType(type_nanf);
+    else if (this->getArg().length() == 1)
 		setType(type_char);
-		return;
-	}
-
-	if (Utils::haveDuplicateChar(this->getArg(), '.'))
-		std::cout << "double ." << std::endl;
-	if (Utils::haveDuplicateChar(this->getArg(), 'f'))
-		std::cout << "double f" << std::endl;
-	if (Utils::haveForbiddenChar(this->getArg(), "0123456789.f"))
-		std::cout << "forbidden char" << std::endl;
-	if (Utils::containChar(this->getArg(), '.')) {
-
-	}
-	//verif .
-		//verif float
-		//verif double
-	//verif int
-
-	//if (Utils::HaveForbiddenChar(this->getArg()), "0123456789.f")
+	else if (Utils::containChar(this->getArg(), '.')) {
+        if (this->getArg().back() == 'f')
+            setType(type_float);
+        else
+            setType(type_double);
+	} else
+        setType(type_int);
 }
 
 std::string ScalarConverter::getArg(void) const {

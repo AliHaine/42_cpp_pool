@@ -29,7 +29,7 @@ bool Utils::haveForbiddenChar(const std::string str, const std::string allowed) 
 
 
 bool Utils::containChar(const std::string str, const char c) {
-	for (std::string::iterator it_str = str.begin(); it_str != str.end(); it_str++) {
+	for (std::string::const_iterator it_str = str.begin(); it_str != str.end(); it_str++) {
 		if (*it_str == c)
 			return true;
 	}
