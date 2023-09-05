@@ -2,7 +2,8 @@ NAME = convert
 CC = c++
 CXXFLAGS = -Wall -Werror -Wextra
 SRCS =	main.cpp \
-		ScalarConverter.cpp
+		ScalarConverter.cpp \
+		Utils.cpp
 
 OBJS = ${SRCS:.cpp=.o}
 
