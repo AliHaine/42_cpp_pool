@@ -6,8 +6,9 @@
 
 class Utils {
 public:
-	static bool HaveDuplicateChar(const std::string str, char c);
-	static bool HaveForbiddenChar(const std::string str, const std::string allowed);
+	static bool haveDuplicateChar(const std::string str, const char c);
+	static bool haveForbiddenChar(const std::string str, const std::string allowed);
+	static bool containChar(const std::string str, const char c);
 	static bool isNan(const std::string str);
 };
 

@@ -39,9 +39,19 @@ void ScalarConverter::DefineType(void) {
 		return;
 	}
 
-	//check double . ou f
-	Utils::HaveDuplicateChar(this->getArg(), 'c');
+	if (Utils::haveDuplicateChar(this->getArg(), '.'))
+		std::cout << "double ." << std::endl;
+	if (Utils::haveDuplicateChar(this->getArg(), 'f'))
+		std::cout << "double f" << std::endl;
+	if (Utils::haveForbiddenChar(this->getArg(), "0123456789.f"))
+		std::cout << "forbidden char" << std::endl;
+	if (Utils::containChar(this->getArg(), '.')) {
 
+	}
+	//verif .
+		//verif float
+		//verif double
+	//verif int
 
 	//if (Utils::HaveForbiddenChar(this->getArg()), "0123456789.f")
 }
