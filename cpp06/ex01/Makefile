@@ -2,8 +2,7 @@ NAME = convert
 CC = c++
 CXXFLAGS = -Wall -Werror -Wextra
 SRCS =	main.cpp \
-		ScalarConverter.cpp \
-		Utils.cpp
+		Serialize.cpp
 
 OBJS = ${SRCS:.cpp=.o}
 
