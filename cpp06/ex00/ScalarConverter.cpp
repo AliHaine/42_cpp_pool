@@ -35,7 +35,7 @@ void ScalarConverter::Convert(const std::string arg) {
 	if (Utils::haveDuplicateChar(sc.getArg(), '+'))
 		throw DuplicateChar();
 	sc.DefineType();
-	if (sc.getType() != type_char)
+	if (sc.getType() != type_char && sc.getType() != type_nan && sc.getType() != type_nanf)
 		if (Utils::haveForbiddenChar(sc.getArg(), "-+0123456789.f"))
 			throw ForbiddenChar();
 	sc.ProcessCast();
@@ -45,10 +45,14 @@ void ScalarConverter::DefineType(void) {
 	int	firstOfPoint;
 
 	if (Utils::isNan(this->getArg()))
-        setType(type_nanf);
+        setType(type_nan);
+	else if (Utils::isNanf(this->getArg()))
+		setType(type_nanf);
     else if (this->getArgLength() == 1)
 		setType(type_char);
-	else if (Utils::containChar(this->getArg(), '.')) {
+	else if (!Utils::containChar(this->getArg(), '.'))
+		setType(type_int);
+	else {
 		firstOfPoint = this->getArg().find_first_of('.');
 
 		if (firstOfPoint + 1 == this->getArgLength())
@@ -66,8 +70,7 @@ void ScalarConverter::DefineType(void) {
 		} else {
 			setType(type_double);
 		}
-	} else
-		setType(type_int);
+	}
 }
 
 void ScalarConverter::ProcessCast(void) {
@@ -76,9 +79,17 @@ void ScalarConverter::ProcessCast(void) {
 	float	f;
 	double	d;
 
-	if (this->getType() == type_nanf) {
+	if (this->getType() == type_nan) {
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: " << this->getArg() << "f" << std::endl;
+		std::cout << "double: " << this->getArg() << std::endl;
+		return ;
+	} else if (this->getType() == type_nanf) {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: " << this->getArg() << std::endl;
+		std::cout << "double: " << this->getArg().substr(0, (this->getArgLength() - 1)) << std::endl;
 		return ;
 	} else if (this->getType() == type_char) {
 		c = static_cast<char>(this->getArg().at(0));
@@ -95,7 +106,7 @@ void ScalarConverter::ProcessCast(void) {
 		i = static_cast<int>(f);
 		c = static_cast<char>(f);
 		d = static_cast<double>(f);
-	} else if (this->getType() == type_double) {
+	} else {
 		d = static_cast<double>(atof(this->getArg().c_str()));
 		f = static_cast<float>(d);
 		i = static_cast<int>(d);

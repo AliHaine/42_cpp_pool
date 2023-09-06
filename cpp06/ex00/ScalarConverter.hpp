@@ -9,6 +9,7 @@ typedef enum {
 	type_int,
 	type_double,
 	type_float,
+	type_nan,
 	type_nanf,
 }	Type;
 

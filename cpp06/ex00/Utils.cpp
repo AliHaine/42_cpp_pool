@@ -39,7 +39,18 @@ bool Utils::containChar(const std::string str, const char c) {
 bool Utils::isNan(const std::string str) {
 	int i = 0;
 
-	const std::string tabs[] = {"-inff", "+inff", "nanf", "-inf", "+inf","nan", ""};
+	const std::string tabs[] = {"-inf", "+inf", "inf", "nan", ""};
+	while (!tabs[i].empty()) {
+		if (str.compare(tabs[i++]) == 0)
+			return true;
+	}
+	return false;
+}
+
+bool Utils::isNanf(const std::string str) {
+	int i = 0;
+
+	const std::string tabs[] = {"-inff", "+inff", "inff", "nanf", ""};
 	while (!tabs[i].empty()) {
 		if (str.compare(tabs[i++]) == 0)
 			return true;
