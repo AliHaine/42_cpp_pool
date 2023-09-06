@@ -1,8 +1,8 @@
-NAME = serialize
+NAME = convert
 CC = c++
 CXXFLAGS = -Wall -Werror -Wextra
 SRCS =	main.cpp \
-		Serialize.cpp
+		Base.cpp
 
 OBJS = ${SRCS:.cpp=.o}
 
