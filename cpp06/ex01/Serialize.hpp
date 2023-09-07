@@ -11,8 +11,8 @@ struct Data {
 class Serialize {
 public:
 	Serialize(void);
-	Serialize(Serialize &serialize);
-	Serialize &operator=(Serialize &serialize);
+	Serialize(const Serialize &serialize);
+	Serialize &operator=(const Serialize &serialize);
 	~Serialize(void);
 
     uintptr_t serialize(Data *ptr);
