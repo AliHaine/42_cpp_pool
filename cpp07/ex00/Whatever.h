@@ -3,29 +3,21 @@
 
 #include <iostream>
 
-class Whatever {
-public:
-	Whatever(void){};
-	Whatever(const Whatever &whatever){};
-	Whatever &operator=(const Whatever &whatever){return *this;};
-	~Whatever(void);
+template<typename T>
+T min(const T a, const T b) {
+	return a < b ? a : b;
+}
 
-	void swap(int &a, int &b) {
-		int	temp = a;
+template<typename T>
+T max(const T a, const T b) {
+	return a > b ? a : b;
+}
 
-		a = b;
-		b = temp;
-	}
-	int min(int a, int b) {
-		if (b <= a)
-			return b;
-		return a;
-	}
-	int max(int a, int b) {
-		if (b >= a)
-			return b;
-		return a;
-	}
-};
+template<typename T>
+void swap(T &a, T &b) {
+	T temp = a;
+	a = b;
+	b = temp;
+}
 
 #endif
