@@ -2,6 +2,8 @@
 #define SPAN_H
 
 #include <iostream>
+#include <algorithm>
+#include <vector>
 
 class Span {
 public:
@@ -12,17 +14,16 @@ public:
     ~Span(void);
 
     void    addNumber(const int number);
+	void    addNumbers(const int numberOfNumber);
     int     shortestSpan(void);
     int     longestSpan(void);
     void    displaySpan(void);
 
     unsigned int        getSize(void) const;
-    unsigned int        getContainNumbers(void) const;
 
 private:
     const unsigned int  _size;
-    unsigned int        _containNumbers;
-    int                 *_elements;
+    std::vector<int>	_elements;
     int                 _shortesSpan;
     int                 _longestSpan;
 
@@ -37,6 +38,12 @@ private:
             return "No span can be found";
         }
     };
+
+	class SpanFullException : public std::exception {
+		const char *what(void) const throw() {
+			return "Span is over flow exception";
+		}
+	};
 };
 
 
