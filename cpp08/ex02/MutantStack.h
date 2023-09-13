@@ -4,8 +4,14 @@
 #include <iostream>
 #include <stack>
 
-template <class ELEMENT>
-class MutantStack {
+template <class T>
+class MutantStack : public std::stack<T> {
+public:
+    MutantStack(void);
+
+    ~MutantStack(void);
+private:
+    std::stack<T> _stack;
 
 };
 

@@ -2,10 +2,9 @@
 
 int main(void) {
 
-	std::stack<int> t;
+    MutantStack<int> ms;
 
-	t.push(5);
-	t.push(6);
+
 
 	for (std::stack<int> it = t.)
 	std::cout << t << std::endl;
