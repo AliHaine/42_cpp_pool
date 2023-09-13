@@ -24,8 +24,6 @@ public:
 private:
     const unsigned int  _size;
     std::vector<int>	_elements;
-    int                 _shortesSpan;
-    int                 _longestSpan;
 
     class CopyAssignException : public std::exception {
         const char *what(void) const throw() {

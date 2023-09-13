@@ -51,8 +51,9 @@ int Span::shortestSpan(void) {
 		throw NoSpanException();
 	std::vector<int> copyElements(this->_elements);
 	std::sort(copyElements.begin(), copyElements.end());
+	if (copyElements.back() < 0)
+		throw NoSpanException();
 	std::vector<int>::iterator startIterator = copyElements.begin();
-
 	while (*startIterator < 0)
 		startIterator++;
 	shortest = *(startIterator + 1) - *startIterator;
@@ -65,26 +66,17 @@ int Span::shortestSpan(void) {
 	return shortest;
 }
 
-int Span::longestSpan() {
-	int shortest;
-	int	currentValue;
-
+int Span::longestSpan(void) {
 	if (this->_elements.size() < 2)
 		throw NoSpanException();
 	std::vector<int> copyElements(this->_elements);
 	std::sort(copyElements.begin(), copyElements.end());
+	if (copyElements.back() < 0)
+		throw NoSpanException();
 	std::vector<int>::iterator startIterator = copyElements.begin();
-
 	while (*startIterator < 0)
 		startIterator++;
-	shortest = *(startIterator + 1) - *startIterator;
-	while (startIterator + 1 != copyElements.end()) {
-		currentValue = *(startIterator + 1) - *startIterator;
-		if (currentValue > shortest)
-			shortest = currentValue;
-		startIterator++;
-	}
-	return shortest;
+	return copyElements.back() - *startIterator;
 }
 
 
