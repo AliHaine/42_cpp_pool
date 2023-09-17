@@ -1,7 +1,8 @@
 NAME = btc
 CC = c++
 CXXFLAGS = -Wall -Werror -Wextra
-SRCS =	main.cpp
+SRCS =	main.cpp \
+		BitcoinExchange.cpp
 
 OBJS = ${SRCS:.cpp=.o}
 
