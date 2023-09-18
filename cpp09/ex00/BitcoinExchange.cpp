@@ -4,7 +4,7 @@ BitcoinExchange::BitcoinExchange(void) : _date("none"), _value(0) {
     std::cout << "BitcoinExchange default constructor called" << std::endl;
 }
 
-BitcoinExchange::BitcoinExchange(const std::string date, const float value) : _date(date), _value(value) {
+BitcoinExchange::BitcoinExchange(const std::string date, const std::string value) : _date(date), _value(value) {
     std::cout << "BitcoinExchange constructor called" << std::endl;
 }
 
@@ -22,23 +22,31 @@ BitcoinExchange::~BitcoinExchange(void) {
     std::cout << "BitcoinExchange destructor called" << std::endl;
 }
 
-void BitcoinExchange::isValueValid(const std::string value) {
+void BitcoinExchange::isValueValid(void) {
 	float val = 0;
+
+	if(this->getValue().empty())
+		throw NoValueException();
     try {
-		val = stof(value);
+		val = stof(this->getValue());
     } catch (std::exception &e) {
-        std::cout << e.what() << std::endl;
-		throw ValueException();
+		throw ValueConvertException();
     }
     if (val > 1000 || val < 0)
-        throw ValueException();
+        throw ValueOverException();
+}
+
+void BitcoinExchange::isDateValid(void) {
+	int date[3];
+
+	(void)date;
 }
 
 std::string BitcoinExchange::getDate(void) const {
     return this->_date;
 }
 
-float BitcoinExchange::getValue(void) const {
+std::string BitcoinExchange::getValue(void) const {
     return this->_value;
 }
 
