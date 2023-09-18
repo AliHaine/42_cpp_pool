@@ -22,10 +22,27 @@ BitcoinExchange::~BitcoinExchange(void) {
     std::cout << "BitcoinExchange destructor called" << std::endl;
 }
 
+void BitcoinExchange::isValueValid(const std::string value) {
+	float val = 0;
+    try {
+		val = stof(value);
+    } catch (std::exception &e) {
+        std::cout << e.what() << std::endl;
+		throw ValueException();
+    }
+    if (val > 1000 || val < 0)
+        throw ValueException();
+}
+
 std::string BitcoinExchange::getDate(void) const {
     return this->_date;
 }
 
 float BitcoinExchange::getValue(void) const {
     return this->_value;
+}
+
+std::ostream &operator<<(std::ostream &os, const BitcoinExchange &bitcoinExchange) {
+	os << "Date: " << bitcoinExchange.getDate() << " Value: " << bitcoinExchange.getValue();
+	return os;
 }

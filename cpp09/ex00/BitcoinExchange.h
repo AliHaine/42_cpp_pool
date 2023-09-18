@@ -13,8 +13,19 @@ public:
     BitcoinExchange &operator=(const BitcoinExchange &bitcoinExchange);
     ~BitcoinExchange(void);
 
+
+    static void        isValueValid(std::string value);
     std::string getDate(void) const;
     float       getValue(void) const;
+
+
+	friend std::ostream &operator<<(std::ostream &os, const BitcoinExchange &bitcoinExchange);
+
+	class ValueException : public std::exception {
+    	const char *what(void) const throw() {
+    		return "Value exception";
+    }
+};
 private:
     const std::string   _date;
     const float         _value;
