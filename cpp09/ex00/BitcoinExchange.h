@@ -4,6 +4,7 @@
 #include <iostream>
 #include <list>
 #include <fstream>
+#include <ctime>
 
 class BitcoinExchange {
 public:
@@ -39,6 +40,18 @@ public:
 			return "Exception: Value are too large or to low.";
 		}
 	};
+
+    class DateInputException : public std::exception {
+        const char *what(void) const throw() {
+            return "Exception: Bad input";
+        }
+    };
+
+    class DateException : public std::exception {
+        const char *what(void) const throw() {
+            return "Exception: invalid date";
+        }
+    };
 private:
     const std::string   _date;
     const std::string   _value;

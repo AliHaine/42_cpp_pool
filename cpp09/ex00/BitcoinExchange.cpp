@@ -37,9 +37,30 @@ void BitcoinExchange::isValueValid(void) {
 }
 
 void BitcoinExchange::isDateValid(void) {
+    struct tm tm;
 	int date[3];
+    (void)date;
 
-	(void)date;
+	if (this->getDate().length() != 10)
+        throw DateInputException();
+
+    for (int i = 0; i < static_cast<int>(this->getDate().length()); i++) {
+        if (this->getDate()[i] == '-') {
+            if (i != 4 && i != 7)
+                throw DateInputException();
+        } else if (!isdigit(this->getDate()[i]))
+            throw DateInputException();
+    }
+    if (strptime(this->getDate().c_str(), "%Y-%m-%d", &tm))
+        std::cout << "date is valid" << std::endl;
+    else
+        std::cout << "date is invalid" << std::endl;
+
+    date[0] =  atoi(this->getDate().substr(0, 4).c_str());
+    date[1] = atoi(this->getDate().substr(5, 7).c_str());
+    date[2] = atoi(this->getDate().substr(8, 10).c_str());
+    if (date[0] < 1900 || date[0] > 2023 || date[1] < 1 || date[1] > 12)
+        throw DateException();
 }
 
 std::string BitcoinExchange::getDate(void) const {

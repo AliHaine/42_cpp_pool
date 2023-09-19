@@ -23,9 +23,12 @@ void fillInputData(std::list<BitcoinExchange> &inputData, std::ifstream &inputFi
 }
 
 void processCalc(std::list<BitcoinExchange> &inputData) {
+    std::string save;
+
 	for (std::list<BitcoinExchange>::iterator it = inputData.begin(); it != inputData.end(); it++) {
 		try {
 			it->isValueValid();
+            it->isDateValid();
 		} catch (std::exception &e) {
 			std::cout << e.what() << std::endl;
 			continue;
