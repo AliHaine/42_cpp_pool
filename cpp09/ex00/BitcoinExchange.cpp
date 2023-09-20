@@ -1,25 +1,32 @@
 #include "BitcoinExchange.h"
 
-BitcoinExchange::BitcoinExchange(void) : _date("none"), _value(0) {
+BitcoinExchange::BitcoinExchange(void) : _date("none"), _value(0), _dateCompressed("none") {
     std::cout << "BitcoinExchange default constructor called" << std::endl;
 }
 
 BitcoinExchange::BitcoinExchange(const std::string date, const std::string value) : _date(date), _value(value) {
+    this->_dateCompressed = this->getDate();
+    compressDate(this->_dateCompressed, '-');
     std::cout << "BitcoinExchange constructor called" << std::endl;
 }
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange &bitcoinExchange) : _date(bitcoinExchange._date), _value(bitcoinExchange._value) {
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &bitcoinExchange) : _date(bitcoinExchange._date), _value(bitcoinExchange._value), _dateCompressed(bitcoinExchange._dateCompressed) {
     std::cout << "BitcoinExchange copy constructor called" << std::endl;
 }
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &bitcoinExchange) {
-    (void)bitcoinExchange;
+    this->_dateCompressed = bitcoinExchange._dateCompressed;
     std::cout << "BitcoinExchange copy assign constructor called" << std::endl;
     return *this;
 }
 
 BitcoinExchange::~BitcoinExchange(void) {
     std::cout << "BitcoinExchange destructor called" << std::endl;
+}
+
+void BitcoinExchange::compressDate(std::string &date, char delimiter) {
+    date.erase(std::remove(date.begin(), date.end(), delimiter), date.end());
+
 }
 
 void BitcoinExchange::isValueValid(void) {
@@ -38,30 +45,15 @@ void BitcoinExchange::isValueValid(void) {
 
 void BitcoinExchange::isDateValid(void) {
     struct tm tm;
-	int date[3];
-    (void)date;
 
-	if (this->getDate().length() != 10)
+    if (this->getDate().length() != 10)
         throw DateInputException();
-
-    for (int i = 0; i < static_cast<int>(this->getDate().length()); i++) {
-        if (this->getDate()[i] == '-') {
-            if (i != 4 && i != 7)
-                throw DateInputException();
-        } else if (!isdigit(this->getDate()[i]))
-            throw DateInputException();
-    }
-    if (strptime(this->getDate().c_str(), "%Y-%m-%d", &tm))
-        std::cout << "date is valid" << std::endl;
-    else
-        std::cout << "date is invalid" << std::endl;
-
-    date[0] =  atoi(this->getDate().substr(0, 4).c_str());
-    date[1] = atoi(this->getDate().substr(5, 7).c_str());
-    date[2] = atoi(this->getDate().substr(8, 10).c_str());
-    if (date[0] < 1900 || date[0] > 2023 || date[1] < 1 || date[1] > 12)
+    if (!strptime(this->getDate().c_str(), "%Y-%d-%m", &tm))
+        throw DateException();
+    if (atoi(this->getDateCompressed().c_str()) > 20220329 || atoi(this->getDateCompressed().c_str()) < 20090102)
         throw DateException();
 }
+
 
 std::string BitcoinExchange::getDate(void) const {
     return this->_date;
@@ -69,6 +61,10 @@ std::string BitcoinExchange::getDate(void) const {
 
 std::string BitcoinExchange::getValue(void) const {
     return this->_value;
+}
+
+std::string BitcoinExchange::getDateCompressed() const {
+    return this->_dateCompressed;
 }
 
 std::ostream &operator<<(std::ostream &os, const BitcoinExchange &bitcoinExchange) {

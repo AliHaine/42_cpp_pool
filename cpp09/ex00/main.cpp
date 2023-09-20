@@ -23,8 +23,13 @@ void fillInputData(std::list<BitcoinExchange> &inputData, std::ifstream &inputFi
 }
 
 void processCalc(std::list<BitcoinExchange> &inputData) {
-    std::string save;
+    std::ifstream fileData("data.csv");
+    float       valueSave;
+    std::string currentDate;
+    float       value;
 
+    std::getline(fileData, currentDate);
+    std::getline(fileData, currentDate);
 	for (std::list<BitcoinExchange>::iterator it = inputData.begin(); it != inputData.end(); it++) {
 		try {
 			it->isValueValid();
@@ -33,7 +38,20 @@ void processCalc(std::list<BitcoinExchange> &inputData) {
 			std::cout << e.what() << std::endl;
 			continue;
 		}
-		std::cout << it->getDate() << " => " << it->getValue() << " = " << std::endl;
+        do {
+            std::cout << "date " << currentDate << std::endl;
+            value = stof(currentDate.substr(currentDate.find_first_of(',') + 1, currentDate.length()));
+            currentDate.erase(currentDate.find_first_of(','), std::to_string(value).length());
+            it->compressDate(currentDate, '-');
+            if (it->getDateCompressed() >= currentDate) {
+                if (it->getDateCompressed() > currentDate)
+                    value = valueSave;
+                break;
+            }
+            valueSave = value;
+            currentDate.clear();
+        } while (std::getline(fileData, currentDate));
+		std::cout << it->getDate() << " => " << it->getValue() << " = " << value * std::stof(it->getValue())  << std::endl;
 	}
 }
 

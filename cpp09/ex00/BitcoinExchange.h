@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <list>
+#include <map>
 #include <fstream>
 #include <ctime>
 
@@ -14,12 +15,13 @@ public:
     BitcoinExchange &operator=(const BitcoinExchange &bitcoinExchange);
     ~BitcoinExchange(void);
 
+    void compressDate(std::string &date, char delimiter);
 
 	void isValueValid(void);
 	void isDateValid(void);
     std::string getDate(void) const;
     std::string getValue(void) const;
-
+    std::string getDateCompressed(void) const;
 
 	friend std::ostream &operator<<(std::ostream &os, const BitcoinExchange &bitcoinExchange);
 
@@ -55,6 +57,7 @@ public:
 private:
     const std::string   _date;
     const std::string   _value;
+    std::string         _dateCompressed;
 
 };
 
