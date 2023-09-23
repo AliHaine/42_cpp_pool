@@ -4,8 +4,11 @@ void convertDateAndValueFromString(const std::string s, std::string &date, std::
     const unsigned long pipePos = s.find_first_of('|');
 	date.clear();
 	value.clear();
-	if (pipePos == std::string::npos)
+	if (pipePos == std::string::npos) {
+		date = s;
+		value = "0";
 		return;
+	}
     date = s.substr(0, pipePos - 1);
     value.insert(0, s, pipePos + 2);
 }
@@ -20,13 +23,14 @@ void fillInputData(std::list<BitcoinExchange> &inputData, std::ifstream &inputFi
         convertDateAndValueFromString(fileLine, date, value);
         inputData.push_back(BitcoinExchange(date, value));
     }
+	inputData.sort();
 }
 
 void processCalc(std::list<BitcoinExchange> &inputData) {
-    std::ifstream fileData("data.csv");
-    float       valueSave;
-    std::string currentDate;
-    float       value;
+    std::ifstream   fileData("data.csv");
+    std::string     currentDate;
+    float           value;
+	float           valueSave;
 
     std::getline(fileData, currentDate);
     std::getline(fileData, currentDate);
@@ -35,21 +39,19 @@ void processCalc(std::list<BitcoinExchange> &inputData) {
 			it->isValueValid();
             it->isDateValid();
 		} catch (std::exception &e) {
-			std::cout << e.what() << std::endl;
+			std::cout << e.what() << it->getDate() << " " << it->getValue() << std::endl;
 			continue;
 		}
+
         do {
-            std::cout << "date " << currentDate << std::endl;
-            value = stof(currentDate.substr(currentDate.find_first_of(',') + 1, currentDate.length()));
-            currentDate.erase(currentDate.find_first_of(','), std::to_string(value).length());
-            it->compressDate(currentDate, '-');
-            if (it->getDateCompressed() >= currentDate) {
-                if (it->getDateCompressed() > currentDate)
-                    value = valueSave;
-                break;
-            }
-            valueSave = value;
-            currentDate.clear();
+			value = stof(currentDate.substr(currentDate.find_first_of(',') + 1, currentDate.length()));
+			int comparisonResult = it->compareDate(currentDate, it->getDate());
+			if (comparisonResult < 2) {
+				if (comparisonResult == 0)
+					value = valueSave;
+				break;
+			}
+			valueSave = value;
         } while (std::getline(fileData, currentDate));
 		std::cout << it->getDate() << " => " << it->getValue() << " = " << value * std::stof(it->getValue())  << std::endl;
 	}

@@ -13,7 +13,7 @@ int main() {
 	tmp = src->createMateria("ice");
 	me->equip(tmp);
 	tmp = src->createMateria("cure");
-	me->equip(tmp);
+	me->equip(new Ice());
 	ICharacter *bob = new Character("bob");
 	me->use(0, *bob);
 	me->use(2, *bob);

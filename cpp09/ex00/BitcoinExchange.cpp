@@ -1,6 +1,6 @@
 #include "BitcoinExchange.h"
 
-BitcoinExchange::BitcoinExchange(void) : _date("none"), _value(0), _dateCompressed("none") {
+BitcoinExchange::BitcoinExchange(void) : _date("0"), _value(0), _dateCompressed("0") {
     std::cout << "BitcoinExchange default constructor called" << std::endl;
 }
 
@@ -20,17 +20,34 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &bitcoinExchan
     return *this;
 }
 
+bool BitcoinExchange::operator<(const BitcoinExchange &b1) const {
+	return this->getDateCompressed() < b1.getDateCompressed();
+}
+
 BitcoinExchange::~BitcoinExchange(void) {
     std::cout << "BitcoinExchange destructor called" << std::endl;
 }
 
 void BitcoinExchange::compressDate(std::string &date, char delimiter) {
     date.erase(std::remove(date.begin(), date.end(), delimiter), date.end());
+}
 
+int BitcoinExchange::compareDate(std::string dateSrc, std::string dateTarget) {
+	dateSrc.erase(10, dateSrc.length());
+	dateSrc.erase(std::remove(dateSrc.begin(), dateSrc.end(), '-'), dateSrc.end());
+
+	dateTarget.erase(10, dateTarget.length());
+	dateTarget.erase(std::remove(dateTarget.begin(), dateTarget.end(), '-'), dateTarget.end());
+
+	if (atoi(dateSrc.c_str()) > atoi(dateTarget.c_str()))
+		return 0;
+	else if (atoi(dateSrc.c_str()) == atoi(dateTarget.c_str()))
+		return 1;
+	return 2;
 }
 
 void BitcoinExchange::isValueValid(void) {
-	float val = 0;
+	float val;
 
 	if(this->getValue().empty())
 		throw NoValueException();
