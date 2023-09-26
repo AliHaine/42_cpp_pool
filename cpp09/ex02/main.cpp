@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
 	pe.displayContainer(vector.begin(), vector.end());
 
 	start = clock();
-	pe.mergeSort(vector);
+	pe.sortVector(vector);
 	end = clock();
 	double time_taken1 = double(end - start) / double(CLOCKS_PER_SEC);
 
@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
 	pe.displayContainer(vector.begin(), vector.end());
 
 	start = clock();
-	pe.mergeSort(deque);
+	pe.sortDeque(deque);
 	end = clock();
 	double time_taken2 = double(end - start) / double(CLOCKS_PER_SEC);
 
