@@ -25,7 +25,7 @@ void PmergeMe::insertionSortVector(std::vector<unsigned int> &vector) {
 
 	for (std::vector<unsigned int>::iterator it = vector.begin() + 1; it != vector.end(); it++) {
 		tempIterator = it;
-		while (*tempIterator < *(tempIterator - 1) && tempIterator != vector.begin()) {
+		while (tempIterator != vector.begin() && *tempIterator < *(tempIterator - 1)) {
 			temp = *tempIterator;
 			*tempIterator = *(tempIterator - 1);
 			*(tempIterator - 1) = temp;
@@ -79,7 +79,7 @@ void PmergeMe::insertionSortDeque(std::deque<unsigned int> &deque) {
 
 	for (std::deque<unsigned int>::iterator it = deque.begin() + 1; it != deque.end(); it++) {
 		tempIterator = it;
-		while (*tempIterator < *(tempIterator - 1) && tempIterator != deque.begin()) {
+		while (tempIterator != deque.begin() && *tempIterator < *(tempIterator - 1)) {
 			temp = *tempIterator;
 			*tempIterator = *(tempIterator - 1);
 			*(tempIterator - 1) = temp;
