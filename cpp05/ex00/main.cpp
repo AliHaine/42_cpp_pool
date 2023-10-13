@@ -17,5 +17,9 @@ int main(void)
 
 	std::cout << b1 << std::endl;
     std::cout << b3 << std::endl;
-
+	try {
+		b3.upRank();
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
 }

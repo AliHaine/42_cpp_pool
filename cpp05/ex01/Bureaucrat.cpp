@@ -22,7 +22,7 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat &bureaucrat) {
 }
 
 std::ostream &operator<<(std::ostream &ostream, const Bureaucrat& bureaucrat) {
-    ostream << bureaucrat._name << ", bureaucrat grade " << bureaucrat._rank;
+    ostream << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getRank();
     return ostream;
 }
 
@@ -30,7 +30,7 @@ Bureaucrat::~Bureaucrat(void) {
     std::cout << "Bureaucrat destructor called" << std::endl;
 }
 
-const std::string Bureaucrat::getName(void) {
+std::string Bureaucrat::getName(void) const {
     return this->_name;
 }
 
@@ -42,7 +42,7 @@ void Bureaucrat::setRank(int rank) {
     this->_rank = rank;
 }
 
-int Bureaucrat::getRank(void) {
+int Bureaucrat::getRank(void) const {
     return this->_rank;
 }
 

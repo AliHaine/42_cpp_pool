@@ -48,3 +48,8 @@ void AForm::beSigned(const Bureaucrat &bureaucrat) {
     setSigned();
 	std::cout << bureaucrat.getName() << " signed " << this->getName() << std::endl;
 }
+
+std::ostream &operator<<(std::ostream &os, const AForm &aForm) {
+	os << aForm.getName() << " " << aForm.getIsSigned() << " " << aForm.getRankToSign() << " " << aForm.getRankToExec();
+	return os;
+}

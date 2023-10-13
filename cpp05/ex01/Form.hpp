@@ -14,10 +14,10 @@ public:
     Form &operator=(Form &form);
     ~Form(void);
 
-    const std::string   getName(void);
-    bool                getIsSigned(void);
-    int                 getRankToSign(void);
-    int                 getRankToExec(void);
+    std::string   		getName(void) const;
+    bool                getIsSigned(void) const ;
+    int                 getRankToSign(void) const;
+    int                 getRankToExec(void) const;
     void                setSigned(void);
 
     void                beSigned(Bureaucrat bureaucrat);
@@ -34,5 +34,7 @@ private:
 		}
 	};
 };
+
+std::ostream &operator<<(std::ostream &os, const Form &form);
 
 #endif

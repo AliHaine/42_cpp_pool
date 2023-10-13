@@ -34,9 +34,11 @@ int main(void)
 	b3.signForm(pform);
 	b3.executeForm(pform);
 	std::cout << std::endl;
+	std::cout << rform <<std::endl;
 	b3.signForm(rform);
 	b3.executeForm(rform);
 	b3.executeForm(rform);
 	b3.executeForm(rform);
+	std::cout << rform <<std::endl;
 	std::cout << std::endl;
 }

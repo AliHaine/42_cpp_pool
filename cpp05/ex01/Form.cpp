@@ -22,20 +22,25 @@ Form::~Form(void) {
     std::cout << "Forn destructor called" << std::endl;
 }
 
-const std::string Form::getName(void) {
+std::string Form::getName(void) const {
     return this->_name;
 }
 
-bool Form::getIsSigned(void) {
+bool Form::getIsSigned(void) const {
     return this->_isSigned;
 }
 
-int Form::getRankToSign(void) {
+int Form::getRankToSign(void) const {
     return this->_rankToSign;
 }
 
-int Form::getRankToExec(void) {
+int Form::getRankToExec(void) const {
     return this->_rankToExec;
+}
+
+std::ostream &operator<<(std::ostream &os, const Form &form) {
+	os << form.getName() << " " << form.getIsSigned() << " " << form.getRankToSign() << " " << form.getRankToExec();
+	return os;
 }
 
 void Form::setSigned(void) {

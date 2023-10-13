@@ -13,12 +13,11 @@ public:
     Bureaucrat(std::string name, int rank);
 	Bureaucrat(Bureaucrat &bureaucrat);
 	Bureaucrat &operator=(Bureaucrat &bureaucrat);
-    friend std::ostream &operator<<(std::ostream &ostream, const Bureaucrat &bureaucrat);
 	~Bureaucrat(void);
 
-	const std::string   getName(void);
+	std::string			getName(void) const;
     void		        setRank(int rank);
-	int		        	getRank(void);
+	int		        	getRank(void) const;
     void                upRank(void);
     void                downRank(void);
     void                signForm(Form &form);
@@ -39,5 +38,7 @@ private:
 		}
 	};
 };
+
+std::ostream &operator<<(std::ostream &ostream, const Bureaucrat &bureaucrat);
 
 #endif

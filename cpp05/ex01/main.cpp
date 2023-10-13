@@ -18,4 +18,5 @@ int main(void)
 
     std::cout << b3 << std::endl;
 	b3.signForm(form);
+	std::cout << form << std::endl;
 }
