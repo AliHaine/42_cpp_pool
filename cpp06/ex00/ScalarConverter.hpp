@@ -27,7 +27,7 @@ public:
 	void				PrintCastResult(char c, int i, float f, double d);
 	std::string			getArg(void) const;
 	int					getArgLength(void) const;
-	Type				getType(void);
+	Type				getType(void) const;
 	void				setType(Type type);
 private:
 	const std::string	_arg;
@@ -37,6 +37,12 @@ private:
 	class DuplicateChar : public std::exception {
 		const char *what(void) const throw() {
 			return "Duplicate char detected";
+		}
+	};
+
+	class IntMaxException : public std::exception {
+		const char *what(void) const throw() {
+			return "Int error";
 		}
 	};
 

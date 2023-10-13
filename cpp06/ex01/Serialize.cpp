@@ -4,12 +4,12 @@ Serialize::Serialize(void) {
 	std::cout << "Serialize default constructor called" << std::endl;
 }
 
-Serialize::Serialize(Serialize &serialize) {
+Serialize::Serialize(const Serialize &serialize) {
     (void)serialize;
 	std::cout << "Serialize copy constructor called" << std::endl;
 }
 
-Serialize &Serialize::operator=(Serialize &serialize) {
+Serialize &Serialize::operator=(const Serialize &serialize) {
     (void)serialize;
 	std::cout << "Serialize copy assign constructor called" << std::endl;
 	return *this;

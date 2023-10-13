@@ -1,6 +1,6 @@
 NAME = convert
 CC = c++
-CXXFLAGS = -Wall -Werror -Wextra
+CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 SRCS =	main.cpp \
 		ScalarConverter.cpp \
 		Utils.cpp
@@ -15,9 +15,6 @@ $(NAME): $(OBJS)
 
 debug: $(OBJS)
 	$(CC) $(CXXFLAGS) -fsanitize=address $(OBJS) $(LIB) -o $(NAME)
-
-c98: $(OBJS)
-	$(CC) $(CXXFLAGS) -std=c++98 $(OBJS) $(LIB) -o $(NAME)
 
 all: $(NAME)
 

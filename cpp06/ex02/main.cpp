@@ -25,31 +25,23 @@ void identify(Base *base) {
 }
 
 void identify(Base &base) {
-	bool	find = true;
-
 	try {
-		dynamic_cast<A &>(base);
-	} catch (std::bad_cast &e) {
-		find = false;
-	}
-	if (find) {
+		(void)dynamic_cast<A &>(base);
 		std::cout << "Class A detected " << std::endl;
 		return ;
-	}
-	find  = true;
+	} catch (std::bad_cast &e) {}
+
 	try {
-		dynamic_cast<B &>(base);
-	} catch (std::bad_cast &e) {
-		find = false;
-	}
-	if (find) {
+		(void)dynamic_cast<B &>(base);
 		std::cout << "Class B detected " << std::endl;
 		return ;
-	}
-	try {
-		dynamic_cast<C &>(base);
 	} catch (std::bad_cast &e) {}
-	std::cout << "Class C detected " << std::endl;
+
+	try {
+		(void)dynamic_cast<C &>(base);
+		std::cout << "Class C detected " << std::endl;
+		return ;
+	} catch (std::bad_cast &e) {}
 }
 
 int main(void) {

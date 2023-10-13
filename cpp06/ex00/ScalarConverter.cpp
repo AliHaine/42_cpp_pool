@@ -8,11 +8,11 @@ ScalarConverter::ScalarConverter(const std::string arg) : _arg(arg), _argLength(
 	std::cout << "ScalarConverter constructor called" << std::endl;
 }
 
-ScalarConverter::ScalarConverter(ScalarConverter& scalarConverter) : _arg(scalarConverter.getArg()), _argLength(scalarConverter.getArgLength()) {
+ScalarConverter::ScalarConverter(const ScalarConverter& scalarConverter) : _arg(scalarConverter.getArg()), _argLength(scalarConverter.getArgLength()) {
 	std::cout << "ScalarConverter constructor copy called" << std::endl;
 }
 
-ScalarConverter& ScalarConverter::operator=(ScalarConverter& scalarConverter) {
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter& scalarConverter) {
 	this->setType(scalarConverter.getType());
 	std::cout << "ScalarConverter assign copy called" << std::endl;
 	return *this;
@@ -42,7 +42,8 @@ void ScalarConverter::Convert(const std::string arg) {
 }
 
 void ScalarConverter::DefineType(void) {
-	int	firstOfPoint;
+	int		firstOfPoint;
+	long	val;
 
 	if (Utils::isNan(this->getArg()))
         setType(type_nan);
@@ -50,8 +51,12 @@ void ScalarConverter::DefineType(void) {
 		setType(type_nanf);
     else if (this->getArgLength() == 1)
 		setType(type_char);
-	else if (!Utils::containChar(this->getArg(), '.'))
+	else if (!Utils::containChar(this->getArg(), '.')) {
+		val = strtol(this->getArg().c_str(), 0 , 0);
+		if (val > INT_MAX)
+			throw IntMaxException();
 		setType(type_int);
+	}
 	else {
 		firstOfPoint = this->getArg().find_first_of('.');
 
@@ -97,12 +102,12 @@ void ScalarConverter::ProcessCast(void) {
 		d = static_cast<double>(c);
 		f = static_cast<float>(c);
 	} else if (this->getType() == type_int) {
-		i = static_cast<int>(strtol(this->getArg().c_str(), nullptr, 0));
+		i = static_cast<int>(strtol(this->getArg().c_str(), 0, 0));
 		c = static_cast<char>(i);
 		d = static_cast<double>(i);
 		f = static_cast<float>(i);
 	} else if (this->getType() == type_float) {
-		f = static_cast<float>(strtof(this->getArg().c_str(), nullptr));
+		f = static_cast<float>(strtof(this->getArg().c_str(), 0));
 		i = static_cast<int>(f);
 		c = static_cast<char>(f);
 		d = static_cast<double>(f);
@@ -141,7 +146,7 @@ int	ScalarConverter::getArgLength(void) const {
 	return (this->_argLength);
 }
 
-Type ScalarConverter::getType(void) {
+Type ScalarConverter::getType(void) const {
 	return this->_type;
 }
 
