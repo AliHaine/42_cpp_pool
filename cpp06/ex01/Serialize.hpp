@@ -5,7 +5,11 @@
 #include <iostream>
 
 struct Data {
-    uintptr_t   value;
+    int value;
+	int a;
+	int b;
+	int c;
+	int d;
 };
 
 class Serialize {

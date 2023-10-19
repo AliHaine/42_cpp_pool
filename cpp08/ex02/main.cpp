@@ -22,5 +22,27 @@ int main(void) {
 	}
 	std::stack<int> s(mstack);
 	std::cout << s.top() << " " << s.size() << std::endl;
+	std::cout << std::endl;
+	mstack.push(666);
+	mstack.push(666);
+	mstack.push(666);
+	mstack.push(666);
+	std::cout << mstack.top() << std::endl;
+	it = mstack.begin();
+	ite = mstack.end();
+	while (it != ite)
+	{
+		std::cout << *it << std::endl;
+		++it;
+	}
+	std::cout << std::endl;
+	mstack.pop();
+	it = mstack.begin();
+	ite = mstack.end();
+	while (it != ite)
+	{
+		std::cout << *it << std::endl;
+		++it;
+	}
 	return 0;
 }

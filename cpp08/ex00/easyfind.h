@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <list>
+#include <algorithm>
 
 class NoValueFound : public std::exception {
     const char *what(void) const throw() {
@@ -12,14 +13,10 @@ class NoValueFound : public std::exception {
 
 template <typename T>
 int easyfind(T t, int value) {
-    int i = 0;
-
-    for (std::list<int>::iterator it = t.begin(); it != t.end(); it++) {
-        if (*it == value)
-            return i;
-        i++;
-    }
-    throw NoValueFound();
+	typename T::iterator it = std::find(t.begin(), t.end(), value);
+	if (it == t.end())
+		throw NoValueFound();
+	return std::distance(t.begin(), it);
 }
 
 #endif
