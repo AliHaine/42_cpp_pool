@@ -57,9 +57,15 @@ void processCalc(std::list<BitcoinExchange> &inputData) {
 	}
 }
 
-int main(void) {
+int main(int argc, char *argv[]) {
+	if (argc < 2)
+		return 1;
+	std::ifstream inputFile(argv[1]);
+	if (!inputFile) {
+		std::cout << "File error" << std::endl;
+		return 1;
+	}
     std::list<BitcoinExchange> inputData;
-    std::ifstream inputFile("input.txt");
     fillInputData(inputData, inputFile);
 	processCalc(inputData);
 

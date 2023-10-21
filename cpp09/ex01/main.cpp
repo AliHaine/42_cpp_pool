@@ -21,21 +21,22 @@ void calcFunction(std::stack<int> &sta, const char ope) {
 	}
 }
 
-void rpnFunction(std::string& argv) {
+void rpnFunction(std::string argv) {
 	std::stack<int> sta;
 
 	for (std::string::const_iterator it = argv.begin(); it != argv.end(); it++) {
 		if (*it == ' ')
-			continue ;
+			continue;
 		if (*it == '-' || *it == '+' || *it == '/' || *it == '*') {
-			if (sta.size() != 2) {
-				std::cout << "Error" << std::endl;
-				return;
-			}
-			calcFunction(sta, *it);
+			if (sta.size() >= 2)
+				calcFunction(sta, *it);
 			continue;
 		}
 		sta.push(*it - 48);
+	}
+	if (sta.size() > 1) {
+		std::cout << "Error" << std::endl;
+		return;
 	}
 	std::cout << "Result: " << sta.top() << std::endl;
 }

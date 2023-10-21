@@ -45,6 +45,4 @@ private:
 
 std::ostream& operator<<(std::ostream& os, const Fixed& f);
 
-//Fixed operator++(Fixed& f);
-
 #endif
